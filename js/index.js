@@ -1,18 +1,18 @@
 // Mảng chứa danh sách nhân viên
 let staffList = getStaffList();
-console.log("staffList", staffList);
-
 // Hiển thị danh sách nhân viên ra table khi mở trang web
 renderTable(staffList);
 
-// Vì là mới thêm nên nút cập nhật sẽ bị ẩn đi
-// document.getElementById("btnThem").onclick = function () {
-//     getElement("#btnCapNhat").disabled = true;
-// }
+// Vì là thêm mới nên nút cập nhật của Dialog sẽ bị ẩn đi và ngược lại nếu nhấn nút chỉnh sửa thì nút thêm sẽ bị ẩn
+document.getElementById("btnThem").onclick = function () {
+    getElement("#btnCapNhat").disabled = true;
+    getElement("#btnThemNV").disabled = false;
+}
 
-// document.getElementById("btnInsert").onclick = function () {
-//     getElement("#btnCapNhat").disabled = false;
-// }
+document.getElementById("btnInsert").onclick = function () {
+    getElement("#btnCapNhat").disabled = false;
+    getElement("#btnThemNV").disabled = true;
+}
 
 // Hàm thêm nhân viên
 function createStaff() {
@@ -66,10 +66,9 @@ function selectStaffToUpdate(staffId) {
     getElement("#datepicker").value = selectedStaff.datePicker;
     getElement("#luongCB").value = selectedStaff.basicSalary;
     getElement("#chucvu").value = selectedStaff.service;
-    getElement("#gioLam").value = selectedStaff.workHour;
+    getElement("#gioLam").value = selectedStaff.workHoursMonth;
 
     getElement("#tknv").disabled = true;
-    getElement("#btnThemNV").disabled = true;
 }
 
 // Hàm xóa nhân viên
@@ -108,7 +107,6 @@ function resetInput() {
     getElement("#gioLam").value = "";
 
     getElement("#tknv").disabled = false;
-    getElement("#btnThemNV").disabled = false;
 }
 
 // Hàm cập nhật
@@ -343,7 +341,7 @@ function getStaffList() {
             staff.datePicker,
             staff.basicSalary,
             staff.service,
-            staff.workHour,
+            staff.workHoursMonth,
         );
     }
     return staffList;
