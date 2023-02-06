@@ -1,4 +1,4 @@
-function Staff(id, name, email, password, datePicker, basicSalary, service, workHoursMonth) {  //totalSalary, type
+function Staff(id, name, email, password, datePicker, basicSalary, service, workHoursMonth, totalSalary, typeStaff) {
     this.id = id;
     this.name = name;
     this.email = email;
@@ -7,24 +7,39 @@ function Staff(id, name, email, password, datePicker, basicSalary, service, work
     this.basicSalary = basicSalary;
     this.service = service;
     this.workHoursMonth = workHoursMonth;
-    // this.totalSalary = totalSalary;
-    // this.type = type;
+    this.totalSalary = totalSalary;
+    this.typeStaff = typeStaff;
 }
 
+// Hàm tính tổng lương nhân viên
 Staff.prototype.calcTotalSalary = function () {
-    let totalSalary = 0;
-
     if (this.service === "Sếp") {
-        return totalSalary = this.basicSalary * 3;
+        return this.basicSalary * 3;
     }
 
     if (this.service === "Trưởng phòng") {
-        return totalSalary = this.basicSalary * 2;
+        return this.basicSalary * 2;
     }
 
-    return totalSalary = this.basicSalary;
+    return this.basicSalary;
 };
 
-// Staff.prototype.calcRank = function () {
+// Hàm xếp loại nhân viên
+Staff.prototype.calcRank = function () {
+    if (this.workHoursMonth >= 192) {
+        return "Nhân viên xuất sắc";
+    }
 
-// }
+    if (this.workHoursMonth >= 176 && this.workHoursMonth < 192) {
+        return "Nhân viên giỏi";
+    }
+
+    if (this.workHoursMonth >= 160 && this.workHoursMonth < 176) {
+        return "Nhân viên khá";
+    }
+
+    if (this.workHoursMonth < 160) {
+        return "Nhân viên trung bình";
+    }
+
+};
