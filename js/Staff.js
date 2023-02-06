@@ -1,4 +1,4 @@
-function Staff(id, name, email, password, datePicker, basicSalary, service, workHoursMonth, totalSalary, typeStaff) {
+function Staff(id, name, email, password, datePicker, basicSalary, service, workHoursMonth) {
     this.id = id;
     this.name = name;
     this.email = email;
@@ -7,8 +7,6 @@ function Staff(id, name, email, password, datePicker, basicSalary, service, work
     this.basicSalary = basicSalary;
     this.service = service;
     this.workHoursMonth = workHoursMonth;
-    this.totalSalary = totalSalary;
-    this.typeStaff = typeStaff;
 }
 
 // Hàm tính tổng lương nhân viên
