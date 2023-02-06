@@ -1,18 +1,8 @@
 // Mảng chứa danh sách nhân viên
 let staffList = getStaffList();
+
 // Hiển thị danh sách nhân viên ra table khi mở trang web
 renderTable(staffList);
-
-// Vì là thêm mới nên nút cập nhật của Dialog sẽ bị ẩn đi và ngược lại nếu nhấn nút chỉnh sửa thì nút thêm sẽ bị ẩn
-document.getElementById("btnThem").onclick = function () {
-    getElement("#btnCapNhat").disabled = true;
-    getElement("#btnThemNV").disabled = false;
-}
-
-document.getElementById("btnInsert").onclick = function () {
-    getElement("#btnCapNhat").disabled = false;
-    getElement("#btnThemNV").disabled = true;
-}
 
 // Hàm thêm nhân viên
 function createStaff() {
@@ -69,6 +59,7 @@ function selectStaffToUpdate(staffId) {
     getElement("#gioLam").value = selectedStaff.workHoursMonth;
 
     getElement("#tknv").disabled = true;
+    // getElement("#btnThemNV").disabled = true;
 }
 
 // Hàm xóa nhân viên
@@ -93,20 +84,6 @@ function searchStaff() {
     });
 
     renderTable(newStaffList);
-}
-
-// Hàm reset thông tin khi đã thêm mới
-function resetInput() {
-    getElement("#tknv").value = "";
-    getElement("#name").value = "";
-    getElement("#email").value = "";
-    getElement("#password").value = "";
-    getElement("#datepicker").value = "";
-    getElement("#luongCB").value = "";
-    getElement("#chucvu").value = "Chọn chức vụ";
-    getElement("#gioLam").value = "";
-
-    getElement("#tknv").disabled = false;
 }
 
 // Hàm cập nhật
@@ -141,6 +118,20 @@ function updateStaff() {
     storeStaffList();
 }
 
+// Hàm reset thông tin khi đã thêm mới
+function resetInput() {
+    getElement("#tknv").value = "";
+    getElement("#name").value = "";
+    getElement("#email").value = "";
+    getElement("#password").value = "";
+    getElement("#datepicker").value = "";
+    getElement("#luongCB").value = "";
+    getElement("#chucvu").value = "Chọn chức vụ";
+    getElement("#gioLam").value = "";
+
+    getElement("#tknv").disabled = false;
+}
+
 // Hiển thị danh sách staff ra table
 function renderTable(staffList) {
     let html = staffList.reduce((output, staff) => {
@@ -154,7 +145,7 @@ function renderTable(staffList) {
                 <td>${Intl.NumberFormat('vn-VN').format(staff.calcTotalSalary())}</td>
                 <td>${staff.calcRank()}</td>
                 <td>
-                    <button id="btnInsert" class="btn btn-primary" onclick="selectStaffToUpdate('${staff.id}')" data-toggle="modal"
+                    <button class="btn btn-primary" onclick="selectStaffToUpdate('${staff.id}')" data-toggle="modal"
                     data-target="#myModal">
                         Chỉnh sửa
                     </button>
